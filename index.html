@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Europa a Quatro 2027</title>
+<meta name="description" content="Três roteiros alternativos de 28 de janeiro a 14 de fevereiro de 2027: Londres, Paris e o final pela França, Andaluzia ou Norte da Espanha.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231B1B19'/%3E%3Cpath d='M7 21l18-10M9 14l4 2M17 22l2 4' stroke='%23E9B44C' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: cartão de embarque no topo, colagem de fotos, linha do tempo por dia, planos como canhotos de bilhete com mapa fixo ao lado */
+:root{
+  color-scheme:light;
+  --bg:#F3EFE7; --paper:#FBF9F4; --ink:#1B1B19; --muted:#6E6A61; --line:#DDD6C8;
+  --sun:#E9B44C; --gold:#B39262;
+  --pa:#2F6B4F; --pb:#C4572E; --pc:#2C5D8F; --route:#1B1B19;
+  --sea:#DCE4E3; --land:#FBF9F4; --border:#CBC3B2;
+  --car:#2F6B4F; --train:#2C5D8F; --plane:#9A7436; --gold-soft:#ECE5D7;
+  --display:"Bricolage Grotesque", "Avenir Next", "Helvetica Neue", sans-serif;
+  --body:"Instrument Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --r:14px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:0 72px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+img{max-width:100%}
+.wrap{max-width:1120px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;line-height:1}
+h2{font-size:clamp(2rem,4.6vw,3.1rem);font-weight:800;letter-spacing:-.03em}
+h3{font-size:1.4rem;font-weight:600;letter-spacing:-.015em;line-height:1.15}
+p{margin:0}
+a{color:inherit}
+.eyebrow{font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.muted{color:var(--muted)}
+.small{font-size:.8rem}
+section{display:grid;gap:24px;padding-block:72px 0}
+section > div:first-child{display:grid;gap:10px}
+
+/* topo */
+.top{display:flex;justify-content:space-between;align-items:center;padding-block:22px;font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase}
+.top nav{display:flex;gap:18px;flex-wrap:wrap}
+.top nav a{text-decoration:none;color:var(--muted)}
+.top nav a:hover{color:var(--ink)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding-block:28px 12px}
+.hero > *{min-width:0}
+.hero h1{font-size:clamp(3.4rem,10vw,7.6rem);font-weight:800;letter-spacing:-.055em;line-height:.86}
+.hero h1 span{display:block;color:var(--pb)}
+.hero .lede{margin-top:22px;max-width:46ch;font-size:1.1rem;color:#3D3B36}
+.collage{position:relative;aspect-ratio:1/0.92;max-width:100%}
+.collage figure{position:absolute;margin:0;background:#fff;padding:8px 8px 30px;border-radius:4px;box-shadow:0 14px 34px -14px rgba(27,27,25,.45);transition:transform .4s ease}
+.collage figure img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.collage figcaption{position:absolute;bottom:7px;left:10px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase}
+.collage .p1{width:46%;left:2%;top:8%;transform:rotate(-7deg)}
+.collage .p2{width:44%;left:30%;top:0;transform:rotate(3deg);z-index:2}
+.collage .p3{width:42%;right:0;top:26%;transform:rotate(9deg)}
+.collage:hover .p1{transform:rotate(-10deg) translate(-8px,4px)}
+.collage:hover .p3{transform:rotate(12deg) translate(8px,6px)}
+
+/* cartão de embarque */
+.pass{margin-top:36px;display:grid;grid-template-columns:1fr auto;background:var(--ink);color:var(--paper);border-radius:var(--r);overflow:hidden;position:relative}
+.pass-main{padding:24px 28px;display:grid;gap:20px;min-width:0}
+.pass-row{display:flex;flex-wrap:wrap;gap:18px 36px;align-items:flex-end}
+.pass .lbl{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:#A9A397;margin-bottom:4px}
+.pass .val{font-family:var(--mono);font-size:1rem;font-weight:500}
+.pass .iata{font-family:var(--display);font-size:clamp(2.6rem,7vw,4rem);font-weight:800;letter-spacing:-.03em;line-height:.9}
+.pass .arrow{font-size:1.6rem;color:var(--sun);padding-bottom:10px}
+.pass-stub{border-left:2px dashed #4A4843;padding:24px 28px;display:grid;align-content:center;gap:4px;text-align:center;background:#24241F}
+.pass-stub .big{font-family:var(--display);font-size:3.4rem;font-weight:800;line-height:.9;color:var(--sun)}
+.pass::before,.pass::after{content:"";position:absolute;width:22px;height:22px;border-radius:50%;background:var(--bg);right:calc(var(--stubw,150px) - 11px)}
+.pass::before{top:-11px}.pass::after{bottom:-11px}
+.bars{height:30px;background:repeating-linear-gradient(90deg,var(--paper) 0 2px,transparent 2px 4px,var(--paper) 4px 5px,transparent 5px 9px,var(--paper) 9px 12px,transparent 12px 14px);opacity:.85;margin-top:8px}
+
+/* faixa de rota */
+.route{overflow-x:auto;margin-top:28px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:30px 22px 18px}
+.route ol{list-style:none;margin:0;padding:0;display:flex;align-items:center;min-width:760px}
+.route li{display:flex;align-items:center;flex:1}
+.route li:last-child{flex:0}
+.stop{display:grid;justify-items:center;gap:2px;min-width:62px}
+.stop .code{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.stop .nm{font-size:.72rem;color:var(--muted);white-space:nowrap}
+.stop.var .code{background:linear-gradient(90deg,var(--pa),var(--pb),var(--pc));-webkit-background-clip:text;background-clip:text;color:transparent}
+.leg{flex:1;height:0;border-top:2px dotted var(--plane);position:relative;margin-inline:6px}
+.leg.train{border-top:2px dashed var(--train)} .leg.car{border-top:2px solid var(--gold)}
+.leg span{position:absolute;top:-1.5rem;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+
+/* linha do tempo */
+.days{display:grid;position:relative}
+.days::before{content:"";position:absolute;left:47px;top:10px;bottom:10px;width:2px;background:repeating-linear-gradient(var(--line) 0 6px,transparent 6px 11px)}
+.day{display:grid;grid-template-columns:96px 1fr;gap:6px 22px;padding-block:14px;position:relative}
+.date{font-family:var(--mono);font-size:.72rem;line-height:1.3;text-align:center;justify-self:center;background:var(--paper);border:1.5px solid var(--ink);border-radius:10px;padding:6px 8px;width:88px;position:relative;z-index:1;align-self:start;color:var(--muted)}
+.date b{display:block;font-family:var(--display);font-size:1.35rem;font-weight:800;color:var(--ink);letter-spacing:-.02em}
+.date br{display:none}
+.date .n{display:block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase}
+.dbody{display:grid;gap:7px;min-width:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+.dhead{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.place{font-family:var(--display);font-weight:600;font-size:1.15rem;letter-spacing:-.01em}
+.chip{font-family:var(--mono);font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:99px;color:#fff;background:var(--muted)}
+.chip.plane{background:var(--plane)} .chip.train{background:var(--train)} .chip.car{background:var(--car)} .chip.sleep{background:transparent;color:var(--muted);border:1px solid var(--line)}
+.tip{font-size:.88rem;color:#57534B;background:#F5EEDD;border-radius:10px;padding:9px 12px}
+
+/* planos */
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tab{appearance:none;text-align:left;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-top:6px solid var(--c);border-radius:var(--r);padding:16px 18px 18px;cursor:pointer;display:grid;gap:6px;transition:transform .2s ease, box-shadow .2s ease}
+#tab-a{--c:var(--pa)} #tab-b{--c:var(--pb)} #tab-c{--c:var(--pc)}
+.tab:hover{transform:translateY(-3px);box-shadow:0 12px 24px -16px rgba(27,27,25,.5)}
+.tab:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.tab[aria-selected="true"]{background:var(--c);color:#fff;border-color:var(--c)}
+.tab[aria-selected="true"] .eyebrow{color:rgba(255,255,255,.75)}
+.tab .t{font-family:var(--display);font-size:1.5rem;font-weight:800;letter-spacing:-.025em;line-height:1.05}
+.tab .s{font-size:.84rem;opacity:.8}
+.panel{display:grid;gap:26px}
+#a{--c:var(--pa)} #b{--c:var(--pb)} #c{--c:var(--pc)}
+.panel .date{border-color:var(--c)}
+.summary{display:grid;grid-template-columns:1.35fr 1fr;gap:24px;align-items:start;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.summary > *{min-width:0}
+.summary h3{color:var(--c);font-size:1.7rem;font-weight:800}
+.nights{display:grid;gap:10px}
+.bar{display:flex;height:34px;border-radius:99px;overflow:hidden;font-family:var(--mono);font-size:.68rem;font-weight:500}
+.bar div{display:flex;align-items:center;justify-content:center;color:#fff;white-space:nowrap;overflow:hidden;border-right:2px solid var(--paper)}
+.bar div:last-child{border-right:0}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;font-size:.92rem;margin:0}
+.kv dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding-top:4px}
+.kv dd{margin:0}
+.planlayout{display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:28px;align-items:start}
+.planlayout > *{min-width:0}
+.mapbox{position:sticky;top:16px;margin:0;display:grid;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:12px}
+#map{width:100%;height:auto;display:block;border-radius:9px;background:var(--sea)}
+#map .land{fill:var(--land);stroke:var(--border);stroke-width:.6}
+#map .rt{fill:none;stroke-linecap:round;stroke-linejoin:round}
+#map .lbl{font-family:var(--body);font-size:11px;font-weight:500;fill:var(--ink);paint-order:stroke;stroke:var(--land);stroke-width:3px}
+#map .lbl.big{font-family:var(--display);font-weight:800;font-size:13px}
+.maplegend{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:.78rem;color:var(--muted);padding-inline:4px}
+.maplegend svg{vertical-align:middle;margin-right:5px}
+.mapbox figcaption{padding-inline:4px}
+
+/* fotos */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.gallery figure{margin:0;display:grid;gap:6px}
+.gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;background:var(--gold-soft);transition:transform .35s ease, filter .35s ease;filter:saturate(.92)}
+.gallery figure:hover img{transform:scale(1.025);filter:saturate(1.08)}
+.gallery figcaption{font-size:.8rem;color:var(--muted)}
+.gallery figcaption b{color:var(--ink);font-weight:600}
+
+/* chuva */
+.rain{display:grid;gap:10px;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px}
+.rainhead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;margin-bottom:4px}
+.rainhead .muted{font-size:.8rem}
+.rrow{display:grid;grid-template-columns:130px 1fr 130px;gap:12px;align-items:center;font-size:.9rem}
+.rtrack{height:14px;background:var(--gold-soft);border-radius:99px;overflow:hidden}
+.rfill{height:100%;background:var(--pc);border-radius:99px}
+.rv{font-family:var(--mono);font-size:.78rem;font-variant-numeric:tabular-nums;color:var(--muted)}
+.rv b{color:var(--ink);font-weight:600}
+
+/* comparativo e checklist */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--paper)}
+table{border-collapse:collapse;width:100%;min-width:660px;font-size:.92rem}
+th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td,tr:last-child th{border-bottom:0}
+thead th{font-family:var(--display);font-weight:800;font-size:1.1rem;letter-spacing:-.015em}
+thead th:nth-child(2){color:var(--pa)} thead th:nth-child(3){color:var(--pb)} thead th:nth-child(4){color:var(--pc)}
+tbody th{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;white-space:nowrap}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid2 > *{min-width:0;display:grid;gap:12px;align-content:start;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+ul.clean{margin:0;padding-left:1.1em;display:grid;gap:9px}
+ul.clean li::marker{color:var(--pb)}
+.weather{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px}
+.w{border-radius:var(--r);padding:14px 16px;display:grid;gap:2px;background:var(--ink);color:var(--paper)}
+.w .c{font-size:.78rem;color:#A9A397;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.w .t{font-family:var(--display);font-size:1.5rem;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted);display:grid;gap:8px}
+.credits{font-size:.72rem;line-height:1.55}
+
+@media (max-width:960px){.planlayout{grid-template-columns:1fr}.mapbox{position:static;max-width:560px}}
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr;gap:18px}
+  .collage{max-width:440px;width:100%;justify-self:center}
+  .tabs{grid-template-columns:1fr}
+  .summary,.grid2{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .top nav{display:none}
+  .pass{grid-template-columns:1fr}
+  .pass-stub{border-left:0;border-top:2px dashed #4A4843;grid-auto-flow:column;justify-content:space-between;align-items:center;text-align:left}
+  .pass::before,.pass::after{display:none}
+  .pass-stub{width:auto!important}
+  .pass-stub .bars{display:none}
+  .pass-main{padding:22px}
+  .pass-row{gap:16px 20px}
+  .pass-row > div{flex:1 1 40%}
+  .pass .arrow{display:none}
+  .days::before{display:none}
+  .day{grid-template-columns:1fr;gap:8px}
+  .date{justify-self:start;width:auto;display:flex;gap:8px;align-items:baseline;padding:4px 10px}
+  .date b{font-size:1.05rem}
+  .rrow{grid-template-columns:100px 1fr}.rv{grid-column:2}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:no-preference){.panel{animation:fade .3s ease-out}@keyframes fade{from{opacity:.5;transform:translateY(6px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="top">
+  <span>Europa a Quatro · 2027</span>
+  <nav aria-label="Seções"><a href="#base">Londres e Paris</a><a href="#planos">Planos</a><a href="#comparar">Comparar</a><a href="#pratico">Antes de ir</a></nav>
+</div>
+
+<header class="hero">
+  <div>
+    <span class="eyebrow">Bárbara · Luiz · Aline · Frederico</span>
+    <h1 style="margin-top:14px">Europa<span>a quatro.</span></h1>
+    <p class="lede">Três roteiros para a mesma viagem. A primeira metade é igual em todos: Madri só para trocar de avião, quatro dias em Londres e quatro em Paris, com trem entre as duas. O que muda são os oito dias finais.</p>
+  </div>
+  <div class="collage" aria-hidden="true">
+    <figure class="p1"><img src="img/london.jpg" alt=""><figcaption>Londres</figcaption></figure>
+    <figure class="p2"><img src="img/paris.jpg" alt=""><figcaption>Paris</figcaption></figure>
+    <figure class="p3"><img src="img/granada.jpg" alt=""><figcaption>Espanha</figcaption></figure>
+  </div>
+</header>
+
+<div class="pass" style="--stubw:170px">
+  <div class="pass-main">
+    <div class="pass-row">
+      <div><span class="lbl">De</span><span class="iata">FLN</span></div>
+      <span class="arrow" aria-hidden="true">✈</span>
+      <div><span class="lbl">Para</span><span class="iata">MAD</span></div>
+      <div><span class="lbl">Conexão</span><span class="val">GRU, poucas horas</span></div>
+    </div>
+    <div class="pass-row">
+      <div><span class="lbl">Ida</span><span class="val">Qui 28 JAN 2027</span></div>
+      <div><span class="lbl">Volta</span><span class="val">Dom 14 FEV 2027</span></div>
+      <div><span class="lbl">Fusos</span><span class="val">MAD/PAR +4h · LON +3h</span></div>
+      <div><span class="lbl">Passageiros</span><span class="val">4</span></div>
+    </div>
+  </div>
+  <div class="pass-stub" style="width:170px">
+    <span class="lbl">Em terra</span>
+    <span class="big">16</span>
+    <span class="lbl">noites</span>
+    <div class="bars" aria-hidden="true"></div>
+  </div>
+</div>
+
+<nav class="route" aria-label="Rota geral">
+  <ol>
+    <li><div class="stop"><span class="code">FLN</span><span class="nm">Florianópolis</span></div><div class="leg plane"><span>voo</span></div></li>
+    <li><div class="stop"><span class="code">GRU</span><span class="nm">conexão</span></div><div class="leg plane"><span>noturno</span></div></li>
+    <li><div class="stop"><span class="code">MAD</span><span class="nm">só aeroporto</span></div><div class="leg plane"><span>voo</span></div></li>
+    <li><div class="stop"><span class="code">LON</span><span class="nm">4 noites</span></div><div class="leg train"><span>Eurostar</span></div></li>
+    <li><div class="stop"><span class="code">PAR</span><span class="nm">4 noites</span></div><div class="leg car"><span>varia</span></div></li>
+    <li><div class="stop var"><span class="code">A·B·C</span><span class="nm">8 noites</span></div><div class="leg plane"><span>voo</span></div></li>
+    <li><div class="stop"><span class="code">MAD</span><span class="nm">volta</span></div><div class="leg plane"><span>voo</span></div></li>
+    <li><div class="stop"><span class="code">FLN</span><span class="nm">casa</span></div></li>
+  </ol>
+</nav>
+
+<section id="base">
+  <div><span class="eyebrow">Dias 1 a 9 · igual nos três planos</span><h2>Base comum: Londres e Paris</h2></div>
+  <div class="gallery">
+    <figure><img src="img/london.jpg" alt="Londres: Tower Bridge ao anoitecer"><figcaption><b>Londres</b> · Tower Bridge ao anoitecer</figcaption></figure>
+    <figure><img src="img/paris.jpg" alt="Paris: Torre Eiffel vista do Trocadéro"><figcaption><b>Paris</b> · Torre Eiffel vista do Trocadéro</figcaption></figure>
+  </div>
+  <div class="days">
+    <div class="day"><div class="date"><b>28.01</b>quinta<br><span class="n">dia 1</span></div><div class="dbody">
+      <div class="dhead"><span class="place">Florianópolis → São Paulo → Madri</span><span class="chip plane">voo</span><span class="chip sleep">noite a bordo</span></div>
+      <p>Voo à tarde para Guarulhos e conexão de poucas horas sem sair da área internacional. Voo noturno para Madri (cerca de 10h30 de voo).</p>
+      <p class="tip">Ideal emitir tudo num bilhete só, multidestino: ida Florianópolis → Londres via São Paulo e Madri, volta Madri → Florianópolis. A bagagem segue despachada até Londres e a companhia responde por eventual perda de conexão.</p>
+    </div></div>
+    <div class="day"><div class="date"><b>29.01</b>sexta<br><span class="n">dia 2</span></div><div class="dbody">
+      <div class="dhead"><span class="place">Madri (aeroporto) → Londres</span><span class="chip plane">voo</span></div>
+      <p>Chegada a Barajas pela manhã. A imigração e o registro biométrico de entrada na Europa (sistema EES) são feitos aqui. Em seguida, voo de cerca de 2h20 para Londres. Chegada à tarde, check-in e jantar perto do hotel.</p>
+      <p class="tip">Deixar pelo menos 2h30 entre os voos em Madri: pode haver troca de terminal (o T4S e o T4 são ligados por trem interno) e há controle de passaporte na saída para o Reino Unido.</p>
+    </div></div>
+    <div class="day"><div class="date"><b>30.01</b>sábado<br><span class="n">dia 3</span></div><div class="dbody">
+      <div class="dhead"><span class="place">Londres</span></div>
+      <p>Westminster, Big Ben e Abadia pela manhã. Travessia para a South Bank e caminhada pelo rio até a Tate Modern. Almoço no Borough Market (sábado é o dia mais animado) e Tower Bridge ao entardecer. À noite, musical no West End.</p>
+    </div></div>
+    <div class="day"><div class="date"><b>31.01</b>domingo<br><span class="n">dia 4</span></div><div class="dbody">
+      <div class="dhead"><span class="place">Londres</span></div>
+      <p>Columbia Road Flower Market (só aos domingos) e Shoreditch. Tarde em Kensington: Natural History Museum ou V&amp;A (gratuitos), Hyde Park e Harrods. Sunday roast num pub.</p>
+    </div></div>
+    <div class="day"><div class="date"><b>01.02</b>segunda<br><span class="n">dia 5</span></div><div class="dbody">
+      <div class="dhead"><span class="place">Londres</span></div>
+      <p>British Museum pela manhã, Covent Garden e Soho. National Gallery e Trafalgar Square à tarde. Noite livre.</p>
+      <p class="tip">Está previsto o empréstimo da Tapeçaria de Bayeux ao British Museum entre setembro de 2026 e julho de 2027. Confirmar perto da data e reservar horário, se for o caso.</p>
+    </div></div>
+    <div class="day"><div class="date"><b>02.02</b>terça<br><span class="n">dia 6</span></div><div class="dbody">
+      <div class="dhead"><span class="place">Londres → Paris</span><span class="chip train">Eurostar</span></div>
+      <p>Trem de St Pancras para a Gare du Nord (cerca de 2h20). O controle de fronteira é feito na estação, então chegar com folga. Tarde na Île de la Cité: Notre-Dame, Sainte-Chapelle e o Marais.</p>
+      <p class="tip">O Louvre fecha às terças, por isso fica para o dia seguinte.</p>
+    </div></div>
+    <div class="day"><div class="date"><b>03.02</b>quarta<br><span class="n">dia 7</span></div><div class="dbody">
+      <div class="dhead"><span class="place">Paris</span></div>
+      <p>Louvre com horário marcado (às quartas costuma abrir até mais tarde). Tuileries, Champs-Élysées e Arco do Triunfo. Torre Eiffel iluminada à noite.</p>
+    </div></div>
+    <div class="day"><div class="date"><b>04.02</b>quinta<br><span class="n">dia 8</span></div><div class="dbody">
+      <div class="dhead"><span class="place">Versalhes</span><span class="chip train">RER</span></div>
+      <p>Dia inteiro no palácio e nos jardins (fechado às segundas). Na volta, jantar em Saint-Germain-des-Prés.</p>
+    </div></div>
+    <div class="day"><div class="date"><b>05.02</b>sexta<br><span class="n">dia 9</span></div><div class="dbody">
+      <div class="dhead"><span class="place">Paris</span></div>
+      <p>Musée d'Orsay pela manhã. Montmartre e Sacré-Cœur no fim da tarde. Passeio de barco no Sena à noite.</p>
+    </div></div>
+  </div>
+</section>
+
+<section id="planos">
+  <div><span class="eyebrow">Dias 10 a 18 · escolher um</span><h2>Os três finais possíveis</h2></div>
+  <div class="tabs" role="tablist" aria-label="Planos">
+    <button class="tab" role="tab" id="tab-a" aria-controls="a" aria-selected="true"><span class="eyebrow">Plano A</span><span class="t">França de carro e Madri</span><span class="s">Normandia, Mont-Saint-Michel, Loire</span></button>
+    <button class="tab" role="tab" id="tab-b" aria-controls="b" aria-selected="false"><span class="eyebrow">Plano B</span><span class="t">Andaluzia</span><span class="s">Sevilha, Cádiz, Ronda, Granada, Córdoba</span></button>
+    <button class="tab" role="tab" id="tab-c" aria-controls="c" aria-selected="false"><span class="eyebrow">Plano C</span><span class="t">Norte da Espanha</span><span class="s">Bilbao, San Sebastián, Rioja, Segóvia</span></button>
+  </div>
+
+  <div class="planlayout">
+  <div class="panels">
+  <!-- PLANO A -->
+  <div class="panel" role="tabpanel" id="a" aria-labelledby="tab-a">
+    <div class="summary">
+      <div class="nights">
+        <h3>Castelos, falésias e a abadia no mar</h3>
+        <p class="muted">Sai de Paris de carro direto para a Normandia, desce até a Bretanha e volta pelo Vale do Loire. Termina com três noites em Madri, o maior tempo na cidade entre os três planos.</p>
+        <div class="bar" aria-label="Noites: Normandia 3, Loire 2, Madri 3">
+          <div style="flex:3;background:var(--pa)">Normandia 3</div>
+          <div style="flex:2;background:#9A7436">Loire 2</div>
+          <div style="flex:3;background:var(--ink)">Madri 3</div>
+        </div>
+      </div>
+      <dl class="kv">
+        <dt>Carro</dt><dd>cerca de 1.000 km em 6 dias</dd>
+        <dt>Clima</dt><dd>2 a 9 °C, vento e chuva no litoral</dd>
+        <dt>Ritmo</dt><dd>moderado, troca de hotel quase todo dia</dd>
+        <dt>Bom para</dt><dd>história, paisagem, castelos</dd>
+      </dl>
+    </div>
+    <div class="gallery">
+      <figure><img src="img/etretat.jpg" alt="Étretat: falésias e capela"><figcaption><b>Étretat</b> · falésias e capela</figcaption></figure>
+      <figure><img src="img/msm.jpg" alt="Mont-Saint-Michel: a abadia ao nascer do sol"><figcaption><b>Mont-Saint-Michel</b> · a abadia ao nascer do sol</figcaption></figure>
+      <figure><img src="img/chenonceau.jpg" alt="Chenonceau: o castelo sobre o rio Cher"><figcaption><b>Chenonceau</b> · o castelo sobre o rio Cher</figcaption></figure>
+      <figure><img src="img/madrid.jpg" alt="Madri: Palacio Real"><figcaption><b>Madri</b> · Palacio Real</figcaption></figure>
+    </div>
+    <div class="days">
+      <div class="day"><div class="date"><b>06.02</b>sábado<br><span class="n">dia 10</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Paris → Rouen → Étretat → Honfleur</span><span class="chip car">carro</span></div>
+        <p>Retirada do carro em Orly ou na periferia, para não dirigir no centro. Catedral e centro medieval de Rouen, falésias de Étretat e noite no porto de Honfleur.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>07.02</b>domingo<br><span class="n">dia 11</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Praias do Dia D → Bayeux</span><span class="chip car">carro</span></div>
+        <p>Omaha Beach, Cemitério Americano de Colleville e Pointe du Hoc. Noite em Bayeux, cidade pequena e bem preservada.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>08.02</b>segunda<br><span class="n">dia 12</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Mont-Saint-Michel</span><span class="chip car">carro</span></div>
+        <p>Cerca de 2h de estrada. Abadia, vilarejo e a maré da baía. Dormir perto para ver o monte iluminado à noite.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>09.02</b>terça<br><span class="n">dia 13</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Saint-Malo → Amboise</span><span class="chip car">carro</span></div>
+        <p>Manhã nas muralhas de Saint-Malo e cerca de 3h até o Vale do Loire. Noite em Amboise.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>10.02</b>quarta<br><span class="n">dia 14</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Vale do Loire</span></div>
+        <p>Château de Chenonceau, castelo de Amboise e Clos Lucé, a última casa de Leonardo da Vinci. Degustação de vinho de Vouvray.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>11.02</b>quinta<br><span class="n">dia 15</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Chambord → Orly → Madri</span><span class="chip car">carro</span><span class="chip plane">voo</span></div>
+        <p>Chambord pela manhã, cerca de 2h até Orly, devolução do carro e voo à tarde para Madri (cerca de 2h).</p>
+      </div></div>
+      <div class="day"><div class="date"><b>12.02</b>sexta<br><span class="n">dia 16</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Madri</span></div>
+        <p>Museu do Prado, Parque do Retiro e Barrio de las Letras. Tapas em La Latina à noite.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>13.02</b>sábado<br><span class="n">dia 17</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Madri</span></div>
+        <p>Palacio Real e Catedral de la Almudena pela manhã, almoço no Mercado de San Miguel e Plaza Mayor. Tarde no Museu Reina Sofía (Guernica) e jantar de despedida.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>14.02</b>domingo<br><span class="n">dia 18</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Madri → São Paulo → Florianópolis</span><span class="chip plane">voo</span></div>
+        <p>El Rastro, a feira de domingo, se o horário do voo permitir. Volta via Guarulhos.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- PLANO B -->
+  <div class="panel" role="tabpanel" id="b" aria-labelledby="tab-b" hidden>
+    <div class="summary">
+      <div class="nights">
+        <h3>Sol de inverno no sul</h3>
+        <p class="muted">Voo de Paris para Sevilha e carro pela Andaluzia, com Cádiz em pleno Carnaval, os pueblos blancos, Ronda, a Alhambra e Córdoba. Volta a Madri de trem-bala. É o plano com melhor clima.</p>
+        <div class="bar" aria-label="Noites: Sevilha 2, Cádiz 1, Ronda 1, Granada 2, Madri 2">
+          <div style="flex:2;background:#9A7436">Sevilha 2</div>
+          <div style="flex:1;background:var(--gold)">Cádiz</div>
+          <div style="flex:1;background:var(--pa)">Ronda</div>
+          <div style="flex:2;background:var(--pc)">Granada 2</div>
+          <div style="flex:2;background:var(--ink)">Madri 2</div>
+        </div>
+      </div>
+      <dl class="kv">
+        <dt>Carro</dt><dd>cerca de 600 km em 5 dias</dd>
+        <dt>Clima</dt><dd>7 a 18 °C, geralmente seco</dd>
+        <dt>Ritmo</dt><dd>intenso, muita coisa para ver</dd>
+        <dt>Bom para</dt><dd>arquitetura moura, flamenco, festa</dd>
+      </dl>
+    </div>
+    <div class="gallery">
+      <figure><img src="img/sevilla.jpg" alt="Sevilha: Plaza de España" loading="lazy"><figcaption><b>Sevilha</b> · Plaza de España</figcaption></figure>
+      <figure><img src="img/cadiz.jpg" alt="Cádiz: catedral à beira-mar" loading="lazy"><figcaption><b>Cádiz</b> · catedral à beira-mar</figcaption></figure>
+      <figure><img src="img/ronda.jpg" alt="Ronda: Puente Nuevo" loading="lazy"><figcaption><b>Ronda</b> · Puente Nuevo</figcaption></figure>
+      <figure><img src="img/granada.jpg" alt="Granada: Alhambra vista do Albaicín" loading="lazy"><figcaption><b>Granada</b> · Alhambra vista do Albaicín</figcaption></figure>
+      <figure><img src="img/cordoba.jpg" alt="Córdoba: arcos da Mesquita-Catedral" loading="lazy"><figcaption><b>Córdoba</b> · arcos da Mesquita-Catedral</figcaption></figure>
+      <figure><img src="img/madrid.jpg" alt="Madri: Palacio Real" loading="lazy"><figcaption><b>Madri</b> · Palacio Real</figcaption></figure>
+    </div>
+    <div class="days">
+      <div class="day"><div class="date"><b>06.02</b>sábado<br><span class="n">dia 10</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Paris → Sevilha</span><span class="chip plane">voo</span></div>
+        <p>Voo de cerca de 2h30. Tarde no Barrio Santa Cruz e espetáculo de flamenco à noite. Em Sevilha não precisa de carro.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>07.02</b>domingo<br><span class="n">dia 11</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Sevilha</span></div>
+        <p>Real Alcázar, Catedral e Giralda pela manhã. Plaza de España e Parque María Luisa à tarde, jantar em Triana.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>08.02</b>segunda<br><span class="n">dia 12</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Jerez → Cádiz</span><span class="chip car">carro</span></div>
+        <p>Retirada do carro. Visita a uma bodega de xerez em Jerez e noite em Cádiz.</p>
+        <p class="tip">A viagem deve coincidir com o Carnaval de Cádiz, um dos mais famosos da Espanha (a terça de Carnaval de 2027 cai em 9 de fevereiro). Hospedagem esgota cedo; as datas oficiais saem no fim do ano.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>09.02</b>terça<br><span class="n">dia 13</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Pueblos blancos → Ronda</span><span class="chip car">carro</span></div>
+        <p>Arcos de la Frontera e Grazalema pela serra, com chegada a Ronda à tarde. Puente Nuevo e o desfiladeiro ao pôr do sol.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>10.02</b>quarta<br><span class="n">dia 14</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Ronda → Granada</span><span class="chip car">carro</span></div>
+        <p>Cerca de 2h de estrada. Albaicín à tarde e Mirador de San Nicolás com vista da Alhambra ao pôr do sol. Tapas grátis com a bebida, costume de Granada.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>11.02</b>quinta<br><span class="n">dia 15</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Granada</span></div>
+        <p>Alhambra e Generalife, com os Palácios Nazaríes em horário marcado. Banho árabe à noite.</p>
+        <p class="tip">Ingressos da Alhambra esgotam: comprar no site oficial assim que a venda abrir para a data.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>12.02</b>sexta<br><span class="n">dia 16</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Córdoba → Madri</span><span class="chip car">carro</span><span class="chip train">AVE</span></div>
+        <p>Cerca de 2h até Córdoba. Mesquita-Catedral e Judería. Devolução do carro em Córdoba e trem-bala para Madri (cerca de 1h45).</p>
+      </div></div>
+      <div class="day"><div class="date"><b>13.02</b>sábado<br><span class="n">dia 17</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Madri</span></div>
+        <p>Prado, Retiro, Palacio Real e Mercado de San Miguel. Jantar de despedida.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>14.02</b>domingo<br><span class="n">dia 18</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Madri → São Paulo → Florianópolis</span><span class="chip plane">voo</span></div>
+        <p>El Rastro, se o horário do voo permitir. Volta via Guarulhos.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <!-- PLANO C -->
+  <div class="panel" role="tabpanel" id="c" aria-labelledby="tab-c" hidden>
+    <div class="summary">
+      <div class="nights">
+        <h3>Pintxos, vinho e costa basca</h3>
+        <p class="muted">Voo de Paris para Bilbao e carro pelo País Basco e pela Rioja, descendo por Burgos e Segóvia até Madri. É o plano mais gastronômico, com o clima mais úmido.</p>
+        <div class="bar" aria-label="Noites: Bilbao 1, San Sebastián 2, Rioja 1, Burgos 1, Madri 3">
+          <div style="flex:1;background:var(--pc)">Bilbao</div>
+          <div style="flex:2;background:var(--pa)">San Sebastián 2</div>
+          <div style="flex:1;background:#9A7436">Rioja</div>
+          <div style="flex:1;background:var(--gold)">Burgos</div>
+          <div style="flex:3;background:var(--ink)">Madri 3</div>
+        </div>
+      </div>
+      <dl class="kv">
+        <dt>Carro</dt><dd>cerca de 800 km em 6 dias</dd>
+        <dt>Clima</dt><dd>−1 a 14 °C; litoral chuvoso, interior frio e seco</dd>
+        <dt>Chuva</dt><dd>86 mm em Bilbao e 110 mm em San Sebastián no mês</dd>
+        <dt>Ritmo</dt><dd>tranquilo, mesa longa</dd>
+        <dt>Bom para</dt><dd>comida, vinho, cidades menores</dd>
+      </dl>
+    </div>
+    <div class="gallery">
+      <figure><img src="img/bilbao.jpg" alt="Bilbao: Museu Guggenheim" loading="lazy"><figcaption><b>Bilbao</b> · Museu Guggenheim</figcaption></figure>
+      <figure><img src="img/sansebastian.jpg" alt="San Sebastián: praia de La Concha" loading="lazy"><figcaption><b>San Sebastián</b> · praia de La Concha</figcaption></figure>
+      <figure><img src="img/rioja.jpg" alt="Rioja: vinhedos de Laguardia" loading="lazy"><figcaption><b>Rioja</b> · vinhedos de Laguardia</figcaption></figure>
+      <figure><img src="img/segovia.jpg" alt="Segóvia: aqueduto romano" loading="lazy"><figcaption><b>Segóvia</b> · aqueduto romano</figcaption></figure>
+      <figure><img src="img/madrid.jpg" alt="Madri: Palacio Real" loading="lazy"><figcaption><b>Madri</b> · Palacio Real</figcaption></figure>
+    </div>
+    <div class="rain">
+      <div class="rainhead"><h3>Chuva em fevereiro, parada a parada</h3><span class="muted">média do mês · dias com pelo menos 1 mm</span></div>
+      <div class="rrow"><span class="rc">Bilbao</span><div class="rtrack"><div class="rfill" style="width:78.2%"></div></div><span class="rv"><b>86 mm</b> · 10,6 dias</span></div>
+      <div class="rrow"><span class="rc">San Sebastián</span><div class="rtrack"><div class="rfill" style="width:100%"></div></div><span class="rv"><b>110 mm</b> · 11,6 dias</span></div>
+      <div class="rrow"><span class="rc">Rioja (Logroño)</span><div class="rtrack"><div class="rfill" style="width:20.9%"></div></div><span class="rv"><b>23 mm</b> · 5,1 dias</span></div>
+      <div class="rrow"><span class="rc">Burgos</span><div class="rtrack"><div class="rfill" style="width:31.8%"></div></div><span class="rv"><b>35 mm</b> · 6,9 dias</span></div>
+      <div class="rrow"><span class="rc">Segóvia</span><div class="rtrack"><div class="rfill" style="width:28.2%"></div></div><span class="rv"><b>31 mm</b> · 6,0 dias</span></div>
+      <div class="rrow"><span class="rc">Madri</span><div class="rtrack"><div class="rfill" style="width:30.9%"></div></div><span class="rv"><b>34 mm</b> · 5,2 dias</span></div>
+      <p class="muted small">Fonte: AEMET, valores climatológicos normais 1981–2010 (estações de Bilbao Aeroporto, San Sebastián Igueldo, Logroño Agoncillo, Burgos Villafría, Segóvia e Madri Retiro). Na prática, chove em cerca de 4 de cada 10 dias na costa basca; da Rioja para o sul o tempo fica bem mais seco e frio, com geada frequente em Burgos.</p>
+    </div>
+    <div class="days">
+      <div class="day"><div class="date"><b>06.02</b>sábado<br><span class="n">dia 10</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Paris → Bilbao</span><span class="chip plane">voo</span><span class="chip car">carro</span></div>
+        <p>Voo de cerca de 1h30 e retirada do carro no aeroporto. Museu Guggenheim e pintxos no Casco Viejo.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>07.02</b>domingo<br><span class="n">dia 11</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Costa basca → San Sebastián</span><span class="chip car">carro</span></div>
+        <p>San Juan de Gaztelugatxe, a ermida no rochedo, e almoço de peixe na brasa em Getaria com txakoli. Chegada a San Sebastián no fim da tarde.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>08.02</b>segunda<br><span class="n">dia 12</span></div><div class="dbody">
+        <div class="dhead"><span class="place">San Sebastián</span></div>
+        <p>Praia de La Concha, Monte Igueldo e roteiro de pintxos na Parte Vieja. Opcional: tarde em Biarritz, na França, a 50 min.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>09.02</b>terça<br><span class="n">dia 13</span></div><div class="dbody">
+        <div class="dhead"><span class="place">San Sebastián → Rioja</span><span class="chip car">carro</span></div>
+        <p>Cerca de 2h até Laguardia, vila murada sobre adegas. Visita a bodegas em Elciego e arredores. Noite na região.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>10.02</b>quarta<br><span class="n">dia 14</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Haro → Burgos</span><span class="chip car">carro</span></div>
+        <p>Bairro das adegas de Haro pela manhã e cerca de 1h30 até Burgos. Catedral gótica e jantar castelhano.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>11.02</b>quinta<br><span class="n">dia 15</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Segóvia → Madri</span><span class="chip car">carro</span></div>
+        <p>Cerca de 2h30 até Segóvia: aqueduto romano, Alcázar e cochinillo no almoço. Mais 1h15 até Madri e devolução do carro.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>12.02</b>sexta<br><span class="n">dia 16</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Madri</span></div>
+        <p>Prado, Retiro e Barrio de las Letras. Tapas em La Latina.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>13.02</b>sábado<br><span class="n">dia 17</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Madri</span></div>
+        <p>Palacio Real e Plaza Mayor pela manhã, almoço no Mercado de San Miguel. Tarde no Museu Reina Sofía (Guernica) e jantar de despedida.</p>
+      </div></div>
+      <div class="day"><div class="date"><b>14.02</b>domingo<br><span class="n">dia 18</span></div><div class="dbody">
+        <div class="dhead"><span class="place">Madri → São Paulo → Florianópolis</span><span class="chip plane">voo</span></div>
+        <p>El Rastro, se o horário do voo permitir. Volta via Guarulhos.</p>
+      </div></div>
+    </div>
+  </div>
+  </div>
+  <figure class="mapbox">
+    <svg id="map" role="img" aria-label="Mapa com a rota comum e o plano selecionado" viewBox="0 0 360 560"></svg>
+    <div class="maplegend">
+      <span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="var(--muted)" stroke-width="2.5" stroke-linecap="round"/></svg>carro</span>
+      <span><svg width="26" height="8"><line x1="1" y1="4" x2="25" y2="4" stroke="var(--muted)" stroke-width="2.5" stroke-dasharray="6 3"/></svg>trem</span>
+      <span><svg width="26" height="8"><line x1="2" y1="4" x2="25" y2="4" stroke="var(--muted)" stroke-width="2.2" stroke-dasharray="0.5 4.5" stroke-linecap="round"/></svg>avião</span>
+    </div>
+    <figcaption class="muted small">Em destaque, o plano selecionado; os outros aparecem esmaecidos. Trajetos ilustrativos entre as paradas. O voo do Brasil a Madri fica fora do mapa.</figcaption>
+  </figure>
+  </div>
+</section>
+
+<section id="comparar">
+  <div><span class="eyebrow">Lado a lado</span><h2>Como os planos se comparam</h2></div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th></th><th>A · França e Madri</th><th>B · Andaluzia</th><th>C · Norte da Espanha</th></tr></thead>
+      <tbody>
+        <tr><th>Saída de Paris</th><td>de carro</td><td>voo para Sevilha</td><td>voo para Bilbao</td></tr>
+        <tr><th>Carro</th><td>~1.000 km</td><td>~600 km</td><td>~800 km</td></tr>
+        <tr><th>Noites em Madri</th><td>3</td><td>2</td><td>3</td></tr>
+        <tr><th>Clima</th><td>o mais frio</td><td>o mais ameno</td><td>o mais chuvoso (86–110 mm no litoral basco)</td></tr>
+        <tr><th>Destaque</th><td>Mont-Saint-Michel e castelos</td><td>Alhambra e Carnaval de Cádiz</td><td>San Sebastián e Rioja</td></tr>
+        <tr><th>Voos internos</th><td>1 (Paris → Madri)</td><td>1 (Paris → Sevilha)</td><td>1 (Paris → Bilbao)</td></tr>
+        <tr><th>Atenção</th><td>dias curtos, escurece por volta das 18h</td><td>Alhambra e hotel em Cádiz com antecedência</td><td>levar capa de chuva e calçado impermeável</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="pratico">
+  <div><span class="eyebrow">Antes de embarcar</span><h2>O que resolver</h2></div>
+  <div class="grid2">
+    <div>
+      <h3>Documentos</h3>
+      <ul class="clean">
+        <li>Passaporte válido por pelo menos 3 meses após a saída da Europa.</li>
+        <li><b>ETA do Reino Unido</b>: autorização eletrônica obrigatória para brasileiros. Pedir pelo app oficial UK ETA ou pelo gov.uk, alguns dias antes.</li>
+        <li>Seguro viagem com cobertura mínima de €30.000, exigência do espaço Schengen.</li>
+        <li>ETIAS: autorização prevista para o espaço Schengen. Verificar perto da data se já estará sendo exigida.</li>
+        <li>Permissão Internacional para Dirigir (PID), emitida pelo Detran, para quem for dirigir na França ou na Espanha.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Reservar primeiro</h3>
+      <ul class="clean">
+        <li>Passagens em bilhete único multidestino (ida até Londres, volta de Madri).</li>
+        <li>Eurostar: tarifas sobem conforme a data se aproxima.</li>
+        <li>Louvre e Versalhes com horário marcado.</li>
+        <li>Plano B: Alhambra e hotel em Cádiz.</li>
+        <li>Carro com devolução em outra cidade (taxa de retorno costuma ser menor dentro do mesmo país).</li>
+      </ul>
+    </div>
+  </div>
+  <div style="display:grid;gap:10px">
+    <h3>Temperatura média em fevereiro</h3>
+    <div class="weather">
+      <div class="w"><span class="c">Londres</span><span class="t">3–9 °C</span></div>
+      <div class="w"><span class="c">Paris</span><span class="t">3–8 °C</span></div>
+      <div class="w"><span class="c">Normandia</span><span class="t">3–9 °C</span></div>
+      <div class="w"><span class="c">Madri</span><span class="t">4–12 °C</span></div>
+      <div class="w"><span class="c">Sevilha</span><span class="t">7–18 °C</span></div>
+      <div class="w"><span class="c">San Sebastián</span><span class="t">6–12 °C</span></div>
+    </div>
+    <p class="muted">Cartão por aproximação funciona em quase tudo, inclusive no metrô de Londres. Libra só no Reino Unido; euro no restante.</p>
+  </div>
+</section>
+
+<footer>
+  <p>Roteiro de planejamento. Horários de voo, tempos de estrada e funcionamento de museus são aproximados e devem ser confirmados no momento da reserva.</p>
+  <p>A volta sai de Madri em 14.02; conforme o horário do voo, a chegada a Florianópolis pode ser já em 15.02.</p>
+  <p class="credits">Fotos do Wikimedia Commons, usadas conforme as licenças indicadas. <a href="https://commons.wikimedia.org/wiki/File:Tower_Bridge_London_Dusk_Feb_2006.jpg" target="_blank" rel="noopener">Londres</a>: Diliff (CC BY-SA 3.0); <a href="https://commons.wikimedia.org/wiki/File:Tour_eiffel_at_sunrise_from_the_trocadero.jpg" target="_blank" rel="noopener">Paris</a>: Tristan Nitot (CC BY-SA 3.0); <a href="https://commons.wikimedia.org/wiki/File:La_chapelle_Notre-Dame-de-la-Garde_et_les_falaises_d%27Etretat.jpg" target="_blank" rel="noopener">Étretat</a>: Jörg Braukmann (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:Mont_St_Michel_at_sunrise.jpg" target="_blank" rel="noopener">Mont-Saint-Michel</a>: Lynx1211 (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:Chateau_de_Chenonceau_2008E.jpg" target="_blank" rel="noopener">Chenonceau</a>: Ra-smit (obra derivada) (GFDL); <a href="https://commons.wikimedia.org/wiki/File:Palacio_Real,_Madrid,_Espa%C3%B1a,_2014-12-27,_DD_09.JPG" target="_blank" rel="noopener">Madri</a>: Diego Delso (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:Sevilla_-_Plaza_de_Espa%C3%B1a_-_3.jpg" target="_blank" rel="noopener">Sevilha</a>: Benjamin Smith (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:Catedral_de_C%C3%A1diz,_Espa%C3%B1a,_2015-12-08,_DD_69-71_HDR.JPG" target="_blank" rel="noopener">Cádiz</a>: Diego Delso (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:View_of_Puente_Nuevo_bridge_in_Ronda_Spain.jpg" target="_blank" rel="noopener">Ronda</a>: Wolfgang Moroder (CC BY-SA 3.0); <a href="https://commons.wikimedia.org/wiki/File:Granada_-_View_from_Mirador_de_San_Nicol%C3%A1s_-_02.jpg" target="_blank" rel="noopener">Granada</a>: Diego Delso (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:Mezquita-catedral_de_C%C3%B3rdoba_interior_20.jpg" target="_blank" rel="noopener">Córdoba</a>: kallerna (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:Museo_Guggenheim_--_2021_--_Bilbao,_Euskadi,_Espa%C3%B1a.jpg" target="_blank" rel="noopener">Bilbao</a>: José Ligero Loarte (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:San_Sebastian_La_Concha-20120902-RM-125922.jpg" target="_blank" rel="noopener">San Sebastián</a>: Ermell (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:Laguardia_-_Vi%C3%B1edo_02.jpg" target="_blank" rel="noopener">Rioja</a>: Basotxerri (CC BY-SA 4.0); <a href="https://commons.wikimedia.org/wiki/File:Acueducto_de_Segovia_01.jpg" target="_blank" rel="noopener">Segóvia</a>: David Corral Gadea (CC BY-SA 3.0 es). Mapa: Natural Earth.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function show(id){
+    tabs.forEach(function(t){
+      var on=t.getAttribute('aria-controls')===id;
+      t.setAttribute('aria-selected',on?'true':'false');
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!on;
+    });
+    window.__plan=id;
+    if(window.setPlanMap)window.setPlanMap(id);
+  }
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      var id=t.getAttribute('aria-controls');show(id);
+      try{history.replaceState(null,'','#'+id)}catch(e){}
+    });
+  });
+  var h=(location.hash||'').slice(1);
+  if(h==='a'||h==='b'||h==='c')show(h);
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.8.5/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script>
+(function(){
+  if(!window.d3||!window.topojson)return;
+  var P={MAD:[-3.70,40.42],LON:[-0.13,51.51],PAR:[2.35,48.86],ORY:[2.37,48.73],
+    ROU:[1.10,49.44],ETR:[0.21,49.71],HON:[0.23,49.42],OMA:[-0.86,49.36],BAY:[-0.70,49.28],MSM:[-1.51,48.64],SMA:[-2.03,48.65],AMB:[0.98,47.41],CHE:[1.07,47.32],CHA:[1.52,47.62],
+    SVQ:[-5.98,37.39],JER:[-6.14,36.69],CAD:[-6.29,36.53],ARC:[-5.81,36.75],GRZ:[-5.37,36.76],RON:[-5.17,36.74],GRX:[-3.60,37.18],COR:[-4.78,37.89],
+    BIO:[-2.93,43.26],GAZ:[-2.79,43.45],GET:[-2.20,43.30],SS:[-1.98,43.32],LAG:[-2.58,42.55],HAR:[-2.85,42.58],BUR:[-3.70,42.34],SEG:[-4.12,40.94]};
+  var N={MAD:'Madri',LON:'Londres',PAR:'Paris',HON:'Honfleur',BAY:'Bayeux',MSM:'Mont-St-Michel',AMB:'Amboise',ROU:'Rouen',
+    SVQ:'Sevilha',CAD:'Cádiz',RON:'Ronda',GRX:'Granada',COR:'Córdoba',BIO:'Bilbao',SS:'San Sebastián',LAG:'Laguardia',BUR:'Burgos',SEG:'Segóvia'};
+  var OFF={LON:[7,-3,'start'],PAR:[7,4,'start'],MAD:[7,12,'start'],HON:[1,-9,'start'],ROU:[7,13,'start'],BAY:[-2,-8,'end'],MSM:[-6,12,'end'],AMB:[7,4,'start'],
+    SVQ:[-7,-3,'end'],CAD:[-7,4,'end'],RON:[6,12,'start'],GRX:[7,4,'start'],COR:[7,0,'start'],BIO:[-7,-4,'end'],SS:[7,-4,'start'],LAG:[7,5,'start'],BUR:[7,4,'start'],SEG:[-7,4,'end']};
+  var base=[{m:'plane',s:['MAD','LON']},{m:'train',s:['LON','PAR']}];
+  var plans={
+    a:[{m:'car',s:['PAR','ROU','ETR','HON','OMA','BAY','MSM','SMA','AMB','CHE','CHA','ORY']},{m:'plane',s:['ORY','MAD']}],
+    b:[{m:'plane',s:['PAR','SVQ']},{m:'car',s:['SVQ','JER','CAD','ARC','GRZ','RON','GRX','COR']},{m:'train',s:['COR','MAD']}],
+    c:[{m:'plane',s:['PAR','BIO']},{m:'car',s:['BIO','GAZ','GET','SS','LAG','HAR','BUR','SEG','MAD']}]};
+  var stops={a:['ROU','HON','BAY','MSM','AMB'],b:['SVQ','CAD','RON','GRX','COR'],c:['BIO','SS','LAG','BUR','SEG']};
+  var color={a:'var(--pa)',b:'var(--pb)',c:'var(--pc)'};
+  var W=360, mp={type:'MultiPoint',coordinates:[[-9.7,35.8],[3.6,35.8],[-9.7,52.2],[3.6,52.2]]};
+  var proj=d3.geoConicConformal().parallels([38,50]).rotate([3,0]).fitWidth(W,mp);
+  var path=d3.geoPath(proj), H=Math.ceil(path.bounds(mp)[1][1]);
+  var svg=d3.select('#map').attr('viewBox','0 0 '+W+' '+H);
+  svg.append('rect').attr('width',W).attr('height',H).style('fill','var(--sea)');
+  var gLand=svg.append('g'), gR=svg.append('g'), gD=svg.append('g'), gL=svg.append('g');
+  function xy(k){return proj(P[k]);}
+  function seg(g,leg,col,w,op){
+    var pts=leg.s.map(xy), el;
+    if(leg.m==='plane'){
+      var a=pts[0],b=pts[1],mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,dx=b[0]-a[0],dy=b[1]-a[1],k=.18;
+      el=g.append('path').attr('d','M'+a+'Q'+(mx-dy*k)+','+(my+dx*k)+' '+b).attr('stroke-dasharray','0.5 '+(w*2.2));
+    }else{
+      el=g.append('path').attr('d',d3.line().curve(d3.curveCatmullRom.alpha(.5))(pts));
+      if(leg.m==='train')el.attr('stroke-dasharray',(w*2.4)+' '+(w*1.3));
+    }
+    el.attr('class','rt').style('stroke',col).attr('stroke-width',w).attr('opacity',op);
+  }
+  function dot(k,col,r){var p=xy(k);gD.append('circle').attr('cx',p[0]).attr('cy',p[1]).attr('r',r).style('fill',col).style('stroke','var(--land)').attr('stroke-width',1.5);}
+  function label(k,big){var p=xy(k),o=OFF[k]||[7,4,'start'];gL.append('text').attr('class','lbl'+(big?' big':'')).attr('x',p[0]+o[0]).attr('y',p[1]+o[1]).attr('text-anchor',o[2]).text(N[k]);}
+  function draw(id){
+    if(!plans[id])id='a';
+    gR.selectAll('*').remove();gD.selectAll('*').remove();gL.selectAll('*').remove();
+    Object.keys(plans).forEach(function(k){if(k!==id)plans[k].forEach(function(l){seg(gR,l,color[k],1.6,.28);});});
+    base.forEach(function(l){seg(gR,l,'var(--route)',2.6,1);});
+    plans[id].forEach(function(l){seg(gR,l,color[id],2.8,1);});
+    stops[id].forEach(function(k){dot(k,color[id],3.6);label(k,false);});
+    ['LON','PAR','MAD'].forEach(function(k){dot(k,'var(--route)',4.6);label(k,true);});
+  }
+  window.setPlanMap=draw;
+  draw(window.__plan||'a');
+  fetch('data/countries-50m.json').then(function(r){return r.json();}).then(function(t){
+    var fc=topojson.feature(t,t.objects.countries);
+    gLand.selectAll('path').data(fc.features.filter(function(f){var c=d3.geoCentroid(f);return c[0]>-30&&c[0]<40&&c[1]>25&&c[1]<72;}))
+      .enter().append('path').attr('class','land').attr('d',path);
+  }).catch(function(){});
+})();
+</script>
+
+</body>
+</html>

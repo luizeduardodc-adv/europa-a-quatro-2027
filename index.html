@@ -203,6 +203,76 @@ footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font-si
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
 @media (prefers-reduced-motion:no-preference){.panel{animation:fade .3s ease-out}@keyframes fade{from{opacity:.5;transform:translateY(6px)}to{opacity:1;transform:none}}}
+
+/* simulador */
+#montar{--lon:#2C5D8F;--par:#C4572E;--opo:#2F6B4F;--lis:#9A7436}
+.sim{display:grid;gap:22px;background:var(--ink);color:var(--paper);border-radius:22px;padding:28px clamp(16px,3vw,34px) 30px;position:relative;overflow:hidden}
+.sim::before{content:"";position:absolute;inset:-40% -10% auto auto;width:520px;height:520px;background:radial-gradient(circle,rgba(233,180,76,.18),transparent 62%);pointer-events:none}
+.sim > *{position:relative}
+.sim .eyebrow{color:#A9A397}
+.simtop{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:flex-end;justify-content:space-between}
+.presets{display:flex;flex-wrap:wrap;gap:8px}
+.pill{appearance:none;font:inherit;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--paper);background:transparent;border:1px solid #4A4843;border-radius:99px;padding:8px 14px;cursor:pointer;transition:background .2s,border-color .2s,color .2s}
+.pill:hover{border-color:var(--sun)}
+.pill[aria-pressed="true"]{background:var(--sun);border-color:var(--sun);color:var(--ink)}
+.toggles{display:flex;flex-wrap:wrap;gap:10px 22px}
+.sw{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-size:.92rem;user-select:none}
+.sw input{position:absolute;opacity:0;pointer-events:none}
+.sw .tr{width:44px;height:24px;border-radius:99px;background:#3A3934;position:relative;transition:background .25s;flex:none}
+.sw .tr::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:var(--paper);transition:transform .25s cubic-bezier(.3,1.4,.6,1)}
+.sw input:checked + .tr{background:var(--opo)}
+.sw input:checked + .tr::after{transform:translateX(20px)}
+.sw input:focus-visible + .tr{outline:3px solid var(--sun);outline-offset:2px}
+.order{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.order .arr{color:#6E6A61;font-family:var(--mono)}
+.chip2{display:inline-flex;align-items:center;gap:6px;background:#2A2A26;border:1px solid #3F3E39;border-left:5px solid var(--c);border-radius:12px;padding:7px 8px 7px 12px;font-family:var(--display);font-weight:700;letter-spacing:-.01em;cursor:grab;touch-action:none}
+.chip2.fixed{cursor:default;opacity:.75}
+.chip2.dragging{opacity:.4}
+.chip2.over{outline:2px dashed var(--sun);outline-offset:2px}
+.chip2 button{appearance:none;border:0;background:#3A3934;color:var(--paper);width:24px;height:24px;border-radius:7px;cursor:pointer;font-size:.8rem;line-height:1}
+.chip2 button:hover{background:var(--sun);color:var(--ink)}
+.chip2 button:disabled{opacity:.25;cursor:default;background:#3A3934;color:var(--paper)}
+.barwrap{display:grid;gap:8px;padding-top:6px}
+.sbar{position:relative;height:74px;border-radius:16px;display:flex;overflow:visible;background:#2A2A26;user-select:none;touch-action:none}
+.seg{position:relative;display:flex;flex-direction:column;justify-content:center;padding:0 12px;min-width:0;background:var(--c);color:#fff;transition:flex-grow .18s ease;overflow:hidden}
+.seg + .seg{padding-left:20px}
+.seg:first-child{border-radius:16px 0 0 16px}.seg:last-child{border-radius:0 16px 16px 0}
+.seg .nm{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seg .nn{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;opacity:.85;white-space:nowrap}
+.seg::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 calc(var(--u) - 1px),rgba(255,255,255,.14) calc(var(--u) - 1px) var(--u));pointer-events:none}
+.handle{position:absolute;top:-8px;bottom:-8px;width:28px;margin-left:-14px;cursor:ew-resize;z-index:3;display:grid;place-items:center;background:transparent;border:0;padding:0;touch-action:none}
+.handle::before{content:"";width:6px;height:100%;border-radius:99px;background:var(--paper);box-shadow:0 0 0 3px var(--ink)}
+.handle::after{content:"⟷";position:absolute;top:50%;transform:translateY(-50%);background:var(--sun);color:var(--ink);font-size:.7rem;font-weight:700;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;box-shadow:0 0 0 3px var(--ink)}
+.handle:focus-visible::after{outline:3px solid #fff}
+.handle.active::after{transform:translateY(-50%) scale(1.15)}
+.ticks{display:grid;grid-template-columns:repeat(15,1fr);font-family:var(--mono);font-size:.62rem;color:#A9A397;margin-inline:0}
+.ticks span{text-align:left;white-space:nowrap;border-left:1px solid #3F3E39;padding-left:3px;line-height:1.3}
+.ticks span.we{color:var(--sun)}
+.ticks span b{display:block;color:var(--paper);font-weight:500;font-size:.7rem}
+.simgrid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+.simgrid > *{min-width:0}
+.card2{background:#24241F;border:1px solid #3A3934;border-radius:16px;padding:18px 18px 16px;display:grid;gap:12px;align-content:start}
+.card2 h4{margin:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:#A9A397;font-weight:500}
+.legs{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.legs li{display:grid;grid-template-columns:64px 1fr auto;gap:10px;align-items:center;font-size:.92rem}
+.legs .d{font-family:var(--mono);font-size:.72rem;color:#A9A397}
+.legs .d b{display:block;color:var(--paper);font-size:.95rem}
+.legs .m{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:99px;background:#3A3934;white-space:nowrap}
+.legs .m.plane{background:var(--plane)}.legs .m.train{background:var(--train)}.legs .m.stay{background:transparent;border:1px solid #4A4843}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:#2A2A26;border-radius:12px;padding:12px}
+.stat .v{font-family:var(--display);font-weight:800;font-size:1.7rem;letter-spacing:-.03em;color:var(--sun);font-variant-numeric:tabular-nums;line-height:1}
+.stat .l{font-size:.74rem;color:#A9A397;margin-top:4px}
+.alerts{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.alerts li{font-size:.88rem;padding:9px 12px 9px 34px;border-radius:10px;background:#2A2A26;position:relative;line-height:1.4}
+.alerts li::before{position:absolute;left:11px;top:9px;font-size:.85rem}
+.alerts li.ok::before{content:"✓";color:#7BC79A}
+.alerts li.warn{background:#3A2A1E}.alerts li.warn::before{content:"!";color:var(--sun);font-weight:800;left:14px}
+.alerts li.info::before{content:"i";color:#8FB3D9;font-family:var(--mono);font-weight:700;left:14px}
+.simfoot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font-size:.8rem;color:#A9A397}
+.simfoot button{appearance:none;font:inherit;font-size:.8rem;color:var(--ink);background:var(--paper);border:0;border-radius:99px;padding:8px 14px;cursor:pointer}
+@media (max-width:820px){.simgrid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:600px){.sbar{height:64px}.seg{padding:0 6px}.seg + .seg{padding-left:16px}.seg .nm{font-size:.82rem}.seg .nn{font-size:.58rem}.ticks{font-size:.5rem}.ticks span b{font-size:.58rem}.ticks span i{display:none}.legs li{grid-template-columns:52px 1fr}.legs .m{grid-column:2;justify-self:start}}
 </style>
 </head>
 <body>
@@ -210,7 +280,7 @@ footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font-si
 
 <div class="top">
   <span>Londres · Paris · Portugal · 2027</span>
-  <nav aria-label="Seções"><a href="#base">Londres e Paris</a><a href="#planos">Portugal</a><a href="#ordem">Ordem</a><a href="#comparar">Comparar</a><a href="#pratico">Antes de ir</a></nav>
+  <nav aria-label="Seções"><a href="#montar">Simulador</a><a href="#base">Londres e Paris</a><a href="#planos">Portugal</a><a href="#ordem">Ordem</a><a href="#comparar">Comparar</a><a href="#pratico">Antes de ir</a></nav>
 </div>
 
 <header class="hero">
@@ -303,6 +373,42 @@ footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font-si
       <div class="dhead"><span class="place">Rodin, Invalides e Haut-Marais</span></div>
       <p>Musée Rodin, Invalides, Ponte Alexandre III e Grand Palais. Almoço no Marché des Enfants Rouges, BonneGueule (Rue Commines) e Les Cuves de Fauve à noite.</p>
     </div></div>
+  </div>
+</section>
+
+<section id="montar">
+  <div><span class="eyebrow">Simulador · 15 noites entre 26.01 e 10.02</span><h2>Monte a viagem</h2>
+  <p class="muted" style="max-width:64ch">Arraste as divisões da barra para mudar as noites, reordene as cidades e ligue ou desligue o Porto. A chegada e a volta por Lisboa são fixas (TP 110 e TP 109). Em Londres vocês ficam com Gustavo e Lucas, e em Paris com Vinícius; só Portugal entra na conta de hospedagem.</p></div>
+  <div class="sim" id="sim">
+    <div class="simtop">
+      <div style="display:grid;gap:8px"><span class="eyebrow">Atalhos</span>
+        <div class="presets" role="group" aria-label="Planos prontos">
+          <button class="pill" data-preset="a">Plano A · atual</button>
+          <button class="pill" data-preset="b">Plano B · recomendado</button>
+          <button class="pill" data-preset="c">Plano C · sem Porto</button>
+          <button class="pill" data-preset="d">Paris com 6 noites</button>
+        </div>
+      </div>
+      <div class="toggles">
+        <label class="sw"><input type="checkbox" id="tg-porto" checked><span class="tr"></span>Ir ao Porto</label>
+        <label class="sw"><input type="checkbox" id="tg-lis0"><span class="tr"></span>Também começar por Lisboa</label>
+      </div>
+    </div>
+    <div style="display:grid;gap:8px"><span class="eyebrow">Ordem (arraste os cartões ou use as setas)</span>
+      <div class="order" id="order" aria-label="Ordem das cidades"></div>
+    </div>
+    <div class="barwrap">
+      <div class="sbar" id="sbar" aria-label="Noites por cidade"></div>
+      <div class="ticks" id="ticks" aria-hidden="true"></div>
+    </div>
+    <div class="simgrid">
+      <div class="card2"><h4>Deslocamentos e estadias</h4><ul class="legs" id="legs"></ul></div>
+      <div style="display:grid;gap:22px;align-content:start">
+        <div class="card2"><h4>Resumo</h4><div class="stats" id="stats"></div></div>
+        <div class="card2"><h4>O que muda</h4><ul class="alerts" id="alerts"></ul></div>
+      </div>
+    </div>
+    <div class="simfoot"><span id="simlink">A combinação fica no endereço da página, para compartilhar.</span><button type="button" id="copylink">Copiar link desta combinação</button></div>
   </div>
 </section>
 
@@ -554,6 +660,215 @@ footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);font-si
     gLand.selectAll('path').data(fc.features.filter(function(f){var c=d3.geoCentroid(f);return c[0]>-30&&c[0]<40&&c[1]>25&&c[1]<72;}))
       .enter().append('path').attr('class','land').attr('d',path);
   }).catch(function(){});
+})();
+</script>
+
+<script>
+(function(){
+  var TOTAL=15, BASE=new Date(2027,0,26);
+  var C={LIS0:{n:'Lisboa',s:'chegada',c:'var(--lis)'},LON:{n:'Londres',c:'var(--lon)'},PAR:{n:'Paris',c:'var(--par)'},OPO:{n:'Porto',c:'var(--opo)'},LIS:{n:'Lisboa',c:'var(--lis)'}};
+  var PRICE={LIS:600,LIS0:600,OPO:625};
+  var WD=['dom','seg','ter','qua','qui','sex','sáb'];
+  var PRESETS={
+    a:{order:['LON','PAR','OPO','LIS'],lis0:false,n:{LON:4,PAR:5,OPO:3,LIS:3,LIS0:0}},
+    b:{order:['LON','PAR','OPO','LIS'],lis0:false,n:{LON:4,PAR:5,OPO:2,LIS:4,LIS0:0}},
+    c:{order:['LON','PAR','OPO','LIS'],lis0:false,n:{LON:4,PAR:5,OPO:0,LIS:6,LIS0:0}},
+    d:{order:['LON','PAR','OPO','LIS'],lis0:false,n:{LON:4,PAR:6,OPO:0,LIS:5,LIS0:0}}
+  };
+  var S={order:['LON','PAR','OPO','LIS'],porto:true,lis0:false,n:{LON:4,PAR:5,OPO:2,LIS:4,LIS0:2},keep:{OPO:2,LIS0:2}};
+  var $=function(id){return document.getElementById(id);};
+  function day(i){var d=new Date(BASE);d.setDate(d.getDate()+i);return d;}
+  function fmt(i){var d=day(i);return ('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2);}
+  function wd(i){return WD[day(i).getDay()];}
+  function segs(){var a=S.lis0?['LIS0']:[];S.order.forEach(function(k){if(k!=='OPO'||S.porto)a.push(k);});return a;}
+  function normalize(){
+    var sg=segs(),sum=0;
+    Object.keys(S.n).forEach(function(k){if(sg.indexOf(k)<0)S.n[k]=0;});
+    sg.forEach(function(k){if(!S.n[k]||S.n[k]<1)S.n[k]=1;sum+=S.n[k];});
+    var guard=0;
+    while(sum<TOTAL&&guard++<99){var t=sg.indexOf('LIS')>=0?'LIS':sg[sg.length-1];S.n[t]++;sum++;}
+    while(sum>TOTAL&&guard++<199){var big=sg.slice().sort(function(a,b){return S.n[b]-S.n[a];})[0];if(S.n[big]<=1)break;S.n[big]--;sum--;}
+  }
+  function mode(a,b){
+    var A=a==='LIS0'?'LIS':a,B=b==='LIS0'?'LIS':b;if(A===B)return null;
+    var k=[A,B].sort().join('-');
+    if(k==='LON-PAR')return{t:'train',l:'Eurostar'};
+    if(k==='LIS-OPO')return{t:'train',l:'Alfa Pendular'};
+    return{t:'plane',l:'voo'};
+  }
+  /* ---------- render ---------- */
+  function renderOrder(){
+    var o=$('order');o.innerHTML='';
+    if(S.lis0){o.insertAdjacentHTML('beforeend','<span class="chip2 fixed" style="--c:var(--lis)">Lisboa · chegada</span><span class="arr">→</span>');}
+    var vis=S.order.filter(function(k){return k!=='OPO'||S.porto;});
+    vis.forEach(function(k,i){
+      var el=document.createElement('span');el.className='chip2';el.style.setProperty('--c',C[k].c);el.dataset.k=k;
+      el.innerHTML='<button type="button" aria-label="Mover '+C[k].n+' para antes" data-mv="-1"'+(i===0?' disabled':'')+'>‹</button><span>'+C[k].n+'</span><button type="button" aria-label="Mover '+C[k].n+' para depois" data-mv="1"'+(i===vis.length-1?' disabled':'')+'>›</button>';
+      o.appendChild(el);
+      if(i<vis.length-1)o.insertAdjacentHTML('beforeend','<span class="arr">→</span>');
+    });
+  }
+  function renderBar(){
+    var b=$('sbar'),sg=segs(),acc=0;b.innerHTML='';
+    sg.forEach(function(k,i){
+      var s=document.createElement('div');s.className='seg';s.style.setProperty('--c',C[k].c);s.style.flexGrow=S.n[k];s.style.flexBasis='0';
+      s.style.setProperty('--u',(100/S.n[k])+'%');
+      s.innerHTML='<span class="nm">'+C[k].n+'</span><span class="nn">'+S.n[k]+(S.n[k]>1?' noites':' noite')+'</span>';
+      b.appendChild(s);
+    });
+    sg.forEach(function(k,i){
+      acc+=S.n[k];if(i===sg.length-1)return;
+      var h=document.createElement('button');h.type='button';h.className='handle';h.dataset.i=i;
+      h.style.left=(acc/TOTAL*100)+'%';
+      h.setAttribute('role','slider');h.setAttribute('aria-label','Divisão entre '+C[k].n+' e '+C[sg[i+1]].n);
+      h.setAttribute('aria-valuemin','1');h.setAttribute('aria-valuemax',String(TOTAL-1));h.setAttribute('aria-valuenow',String(acc));
+      h.setAttribute('aria-valuetext','troca de cidade em '+fmt(acc));
+      b.appendChild(h);
+    });
+    var t=$('ticks');t.innerHTML='';
+    for(var i=0;i<TOTAL;i++){var g=day(i).getDay();t.insertAdjacentHTML('beforeend','<span class="'+(g===0||g===6?'we':'')+'"><b>'+day(i).getDate()+'</b><i>'+wd(i)+'</i></span>');}
+  }
+  function renderOut(){
+    var sg=segs(),L=$('legs'),html='',start=0,prev='AIR';
+    sg.forEach(function(k,i){
+      var n=S.n[k];
+      if(i===0){
+        if(k==='LIS0')html+=li(0,'Chegada a Lisboa (TP 110, 10:55)','TP 110','plane');
+        else{var m0=mode('LIS',k);html+=li(0,'Chegada a Lisboa e conexão para '+C[k].n,m0?m0.l:'voo',m0?m0.t:'plane');}
+      }else{var m=mode(sg[i-1],k);if(m)html+=li(start,C[sg[i-1]].n+' → '+C[k].n,m.l,m.t);}
+      html+=li(start,C[k].n+': '+n+(n>1?' noites':' noite')+' (até '+fmt(start+n)+')','estadia','stay');
+      start+=n;
+    });
+    var last=sg[sg.length-1];
+    if(last==='LIS'||last==='LIS0')html+=li(TOTAL,'Lisboa → Florianópolis (TP 109, 10:55)','TP 109','plane');
+    else{var mm=mode(last,'LIS');html+=li(TOTAL,C[last].n+' → Lisboa no mesmo dia do TP 109','arriscado','plane');}
+    L.innerHTML=html;
+    function li(d,txt,lab,cls){return '<li><span class="d"><b>'+fmt(d)+'</b>'+wd(d)+'</span><span>'+txt+'</span><span class="m '+cls+'">'+lab+'</span></li>';}
+    /* stats */
+    var paid=(S.n.OPO||0)+(S.n.LIS||0)+(S.n.LIS0||0),cost=(S.n.OPO||0)*PRICE.OPO+((S.n.LIS||0)+(S.n.LIS0||0))*PRICE.LIS;
+    var moves=0;for(var j=1;j<sg.length;j++)if(mode(sg[j-1],sg[j]))moves++; if(sg[0]!=='LIS0')moves++; if(last!=='LIS'&&last!=='LIS0')moves++;
+    $('stats').innerHTML=st(paid,'noites pagas em Portugal')+st('R$ '+cost.toLocaleString('pt-BR'),'hospedagem estimada')+st(moves,moves===1?'deslocamento':'deslocamentos');
+    function st(v,l){return '<div class="stat"><div class="v">'+v+'</div><div class="l">'+l+'</div></div>';}
+    /* alerts */
+    var A=[],pos={},s0=0;sg.forEach(function(k){pos[k]={s:s0,e:s0+S.n[k]};s0+=S.n[k];});
+    if(pos.PAR){
+      var last7=Math.min(pos.PAR.e,7),soldes=last7-pos.PAR.s+1;
+      if(pos.PAR.s>7)A.push(['warn','Paris começa depois de 02/02: os soldes já terão acabado.']);
+      else A.push(['ok','Paris pega '+soldes+(soldes>1?' dias':' dia')+' de soldes (até 02/02).']);
+      if(S.n.PAR<3)A.push(['warn','Paris com menos de 3 noites fica corrida.']);
+      var mon=[6,13].filter(function(d){return d>=pos.PAR.s&&d<pos.PAR.e;});
+      if(mon.length)A.push(['info','Segunda em Paris ('+mon.map(fmt).join(', ')+'): Orsay, Rodin e Carnavalet fecham.']);
+    }
+    if(pos.LON){
+      
+      if(S.n.LON<3)A.push(['warn','Londres com menos de 3 noites deixa pouco tempo para a Barbour e os museus.']);
+      var sat=[4,11].filter(function(d){return d>=pos.LON.s&&d<pos.LON.e;});
+      if(sat.length)A.push(['info','Sábado em Londres ('+sat.map(fmt).join(', ')+'): dá para a visita guiada ao Parlamento.']);
+      A.push(['info','Em Londres as liquidações costumam acabar em meados de janeiro.']);
+    }
+    if(pos.LON&&pos.PAR&&Math.abs(sg.indexOf('LON')-sg.indexOf('PAR'))!==1)A.push(['warn','Londres e Paris não ficam em sequência: perde o Eurostar e soma um voo.']);
+    if(S.porto&&pos.OPO){
+      if(S.n.OPO<2)A.push(['warn','Porto com 1 noite: só dá para a Ribeira e uma cave em Gaia.']);
+      var nonSun=false;for(var d=pos.OPO.s;d<=pos.OPO.e;d++)if(day(d).getDay()!==0)nonSun=true;
+      if(!nonSun)A.push(['warn','No Porto só no domingo: o Bolhão estará fechado.']);
+      else A.push(['ok','Bolhão encaixa em '+(day(pos.OPO.s).getDay()===0?fmt(pos.OPO.s+1):fmt(pos.OPO.s))+' (fecha aos domingos).']);
+    }else A.push(['info','Sem Porto: um hotel a menos e voo direto de Paris para Lisboa.']);
+    var lisN=(S.n.LIS||0)+(S.n.LIS0||0);
+    if(lisN>=4)A.push(['ok','Lisboa com '+lisN+' noites: cabe um dia em Sintra.']);
+    else A.push(['info','Lisboa com '+lisN+(lisN>1?' noites':' noite')+': Sintra fica de fora.']);
+    if(last!=='LIS'&&last!=='LIS0')A.push(['warn','A viagem não termina em Lisboa: um atraso no voo de volta faz perder o TP 109.']);
+    if(S.lis0)A.push(['info','Começar por Lisboa ajuda com o fuso, mas soma uma troca de hotel.']);
+    if(sg[0]!=='LIS0'&&sg[0]!=='LIS')A.push(['info','Conexão no dia da chegada (26/01) para '+C[sg[0]].n+': bilhete separado da TAP, escolher horário com folga.']);
+    if(S.lis0&&sg[1]==='LIS')A.push(['warn','Lisboa aparece duas vezes seguidas: desligue o início por Lisboa ou mude a ordem.']);
+    $('alerts').innerHTML=A.map(function(a){return '<li class="'+a[0]+'">'+a[1]+'</li>';}).join('');
+    /* presets highlight + hash */
+    Object.keys(PRESETS).forEach(function(p){var P=PRESETS[p],eq=!S.lis0&&S.order.join()===P.order.join();
+      if(eq)['LON','PAR','OPO','LIS'].forEach(function(k){if((S.n[k]||0)!==(P.n[k]||0)||(k==='OPO'&&!S.porto&&P.n.OPO))eq=false;});
+      if(eq&&((P.n.OPO>0)!==S.porto))eq=false;
+      document.querySelector('[data-preset="'+p+'"]').setAttribute('aria-pressed',eq?'true':'false');});
+    try{history.replaceState(null,'','#m='+encode());}catch(e){}
+  }
+  function render(){normalize();renderOrder();renderBar();renderOut();$('tg-porto').checked=S.porto;$('tg-lis0').checked=S.lis0;}
+  /* ---------- state io ---------- */
+  function encode(){var t=[];if(S.lis0)t.push('LIS0'+S.n.LIS0);S.order.forEach(function(k){t.push(k+(k==='OPO'&&!S.porto?0:S.n[k]));});return t.join('-');}
+  function decode(h){
+    var m=/m=([A-Z0-9-]+)/.exec(h);if(!m)return false;
+    var o=[],n={},l0=false,po=true;
+    m[1].split('-').forEach(function(t){
+      if(/^LIS0\d+$/.test(t)){l0=true;n.LIS0=parseInt(t.slice(4),10);return;}
+      var mm=/^(LON|PAR|OPO|LIS)(\d+)$/.exec(t);if(!mm)return;o.push(mm[1]);n[mm[1]]=parseInt(mm[2],10);if(mm[1]==='OPO'&&!n.OPO)po=false;});
+    if(o.length!==4)return false;
+    S.order=o;S.lis0=l0;S.porto=po;['LON','PAR','OPO','LIS'].forEach(function(k){S.n[k]=n[k]||0;});S.n.LIS0=l0?n.LIS0:0;return true;
+  }
+  function preset(p){var P=PRESETS[p];S.order=P.order.slice();S.lis0=false;S.porto=P.n.OPO>0;Object.keys(P.n).forEach(function(k){S.n[k]=P.n[k];});render();}
+  /* ---------- interactions ---------- */
+  document.querySelectorAll('[data-preset]').forEach(function(b){b.addEventListener('click',function(){preset(b.dataset.preset);});});
+  $('tg-porto').addEventListener('change',function(e){
+    S.porto=e.target.checked;
+    if(S.porto){S.n.OPO=S.keep.OPO||2;var sg=segs(),sum=0;sg.forEach(function(k){if(k!=='OPO')sum+=S.n[k];});
+      var need=sum+S.n.OPO-TOTAL;while(need-->0){var t=S.n.LIS>1?'LIS':sg.filter(function(k){return k!=='OPO';}).sort(function(a,b){return S.n[b]-S.n[a];})[0];S.n[t]--;}}
+    else{S.keep.OPO=S.n.OPO;var to=S.n.LIS?'LIS':'PAR';S.n[to]+=S.n.OPO;S.n.OPO=0;}
+    render();
+  });
+  $('tg-lis0').addEventListener('change',function(e){
+    S.lis0=e.target.checked;
+    if(S.lis0){S.n.LIS0=S.keep.LIS0||2;var need=S.n.LIS0;while(need-->0){var sg=segs().filter(function(k){return k!=='LIS0';}).sort(function(a,b){return S.n[b]-S.n[a];});S.n[sg[0]]--;}}
+    else{S.keep.LIS0=S.n.LIS0;S.n.LIS+=S.n.LIS0;S.n.LIS0=0;}
+    render();
+  });
+  $('order').addEventListener('click',function(e){
+    var b=e.target.closest('button[data-mv]');if(!b)return;
+    var k=b.parentNode.dataset.k,vis=S.order.filter(function(x){return x!=='OPO'||S.porto;}),i=vis.indexOf(k),j=i+parseInt(b.dataset.mv,10);
+    if(j<0||j>=vis.length)return;var other=vis[j],a=S.order.indexOf(k),c=S.order.indexOf(other);S.order[a]=other;S.order[c]=k;render();
+    var nb=document.querySelector('.chip2[data-k="'+k+'"] button[data-mv="'+b.dataset.mv+'"]');if(nb&&!nb.disabled)nb.focus();
+  });
+  /* drag chips */
+  var drag=null;
+  $('order').addEventListener('pointerdown',function(e){
+    var ch=e.target.closest('.chip2');if(!ch||ch.classList.contains('fixed')||e.target.closest('button'))return;
+    drag={k:ch.dataset.k,el:ch,over:null};ch.classList.add('dragging');ch.setPointerCapture(e.pointerId);e.preventDefault();
+  });
+  $('order').addEventListener('pointermove',function(e){
+    if(!drag)return;var t=document.elementFromPoint(e.clientX,e.clientY),ch=t&&t.closest?t.closest('.chip2'):null;
+    document.querySelectorAll('.chip2.over').forEach(function(x){x.classList.remove('over');});
+    if(ch&&ch!==drag.el&&!ch.classList.contains('fixed')){ch.classList.add('over');drag.over=ch.dataset.k;}else drag.over=null;
+  });
+  function endDrag(){
+    if(!drag)return;var d=drag;drag=null;
+    if(d.over){var a=S.order.indexOf(d.k);S.order.splice(a,1);var b=S.order.indexOf(d.over),from=a,to=b;
+      var vis0=a<=b?b+1:b;S.order.splice(vis0,0,d.k);}
+    render();
+  }
+  $('order').addEventListener('pointerup',endDrag);$('order').addEventListener('pointercancel',endDrag);
+  /* drag handles */
+  var hd=null;
+  $('sbar').addEventListener('pointerdown',function(e){
+    var h=e.target.closest('.handle');if(!h)return;hd={i:+h.dataset.i,el:h};h.classList.add('active');$('sbar').setPointerCapture(e.pointerId);e.preventDefault();
+  });
+  $('sbar').addEventListener('pointermove',function(e){
+    if(!hd)return;var r=$('sbar').getBoundingClientRect(),u=Math.round((e.clientX-r.left)/r.width*TOTAL);setBoundary(hd.i,u);
+  });
+  function stopH(){if(hd){hd=null;render();}}
+  $('sbar').addEventListener('pointerup',stopH);$('sbar').addEventListener('pointercancel',stopH);
+  $('sbar').addEventListener('keydown',function(e){
+    var h=e.target.closest('.handle');if(!h)return;var i=+h.dataset.i,cur=+h.getAttribute('aria-valuenow');
+    if(e.key==='ArrowLeft'||e.key==='ArrowDown'){setBoundary(i,cur-1);e.preventDefault();}
+    else if(e.key==='ArrowRight'||e.key==='ArrowUp'){setBoundary(i,cur+1);e.preventDefault();}
+    else return;
+    render();var nh=document.querySelector('.handle[data-i="'+i+'"]');if(nh)nh.focus();
+  });
+  function setBoundary(i,u){
+    var sg=segs(),before=0;for(var j=0;j<i;j++)before+=S.n[sg[j]];
+    var pair=S.n[sg[i]]+S.n[sg[i+1]],left=Math.max(1,Math.min(pair-1,u-before));
+    if(left===S.n[sg[i]])return;S.n[sg[i]]=left;S.n[sg[i+1]]=pair-left;
+    if(hd){renderBar();var nh=document.querySelector('.handle[data-i="'+i+'"]');if(nh){nh.classList.add('active');hd.el=nh;}renderOut();}
+  }
+  $('copylink').addEventListener('click',function(){
+    var url=location.href;
+    function done(){$('simlink').textContent='Link copiado.';setTimeout(function(){$('simlink').textContent='A combinação fica no endereço da página, para compartilhar.';},2500);}
+    try{navigator.clipboard.writeText(url).then(done,function(){$('simlink').textContent=url;});}catch(e){$('simlink').textContent=url;}
+  });
+  if(!decode(location.hash))preset('b');else render();
 })();
 </script>
 
